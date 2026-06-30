@@ -1,8 +1,29 @@
+import React from 'react';
 import Link from 'next/link';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#FAF9F6] text-gray-900 font-sans antialiased">
+      
+      {/* LUXURY NAVIGATION BAR */}
+      <header className="sticky top-0 z-50 bg-[#FAF9F6]/80 backdrop-blur-md border-b border-gray-100 px-6 py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="text-xl font-bold tracking-tight text-gray-950">
+            Solu<span className="text-amber-600 font-medium">Study</span>
+          </div>
+          <nav className="flex items-center gap-6">
+            <a href="#pricing" className="text-sm font-medium text-gray-600 hover:text-gray-950 transition">
+              Process & Pricing
+            </a>
+            <Link href="/login" className="text-sm font-medium text-gray-600 hover:text-gray-950 transition">
+              Sign In
+            </Link>
+            <Link href="/register" className="px-4 py-2 bg-gray-950 text-white text-xs font-medium tracking-wide rounded-md hover:bg-gray-800 transition">
+              Apply Now
+            </Link>
+          </nav>
+        </div>
+      </header>
       
       {/* 1. HERO SECTION & TRUST ANCHOR */}
       <section className="relative px-6 py-20 md:py-32 max-w-7xl mx-auto border-b border-gray-200">
@@ -20,13 +41,13 @@ export default function Home() {
               and build a better tomorrow, completely stress-free.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-  <Link href="/register" className="px-8 py-4 bg-gray-950 text-white font-medium tracking-wide rounded-lg hover:bg-gray-800 transition duration-200 text-center">
-    Create Account & Apply
-  </Link>
-  <a href="#pricing" className="px-8 py-4 bg-white text-gray-900 border border-gray-200 font-medium tracking-wide rounded-lg hover:bg-gray-50 transition duration-200 text-center">
-    View Pricing & Process
-  </a>
-</div>
+              <Link href="/register" className="px-8 py-4 bg-gray-950 text-white font-medium tracking-wide rounded-lg hover:bg-gray-800 transition duration-200 text-center">
+                Create Account & Apply
+              </Link>
+              <a href="#pricing" className="px-8 py-4 bg-white text-gray-900 border border-gray-200 font-medium tracking-wide rounded-lg hover:bg-gray-50 transition duration-200 text-center">
+                View Pricing & Process
+              </a>
+            </div>
           </div>
           
           {/* Personal Bio Card (Trust Anchor) */}
