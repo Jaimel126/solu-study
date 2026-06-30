@@ -1,4 +1,4 @@
-import React from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -20,13 +20,13 @@ export default function Home() {
               and build a better tomorrow, completely stress-free.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="px-8 py-4 bg-gray-950 text-white font-medium tracking-wide rounded-lg hover:bg-gray-800 transition duration-200 text-center">
-                Create Account & Apply
-              </button>
-              <a href="#pricing" className="px-8 py-4 bg-white text-gray-900 border border-gray-200 font-medium tracking-wide rounded-lg hover:bg-gray-50 transition duration-200 text-center">
-                View Pricing & Process
-              </a>
-            </div>
+  <Link href="/register" className="px-8 py-4 bg-gray-950 text-white font-medium tracking-wide rounded-lg hover:bg-gray-800 transition duration-200 text-center">
+    Create Account & Apply
+  </Link>
+  <a href="#pricing" className="px-8 py-4 bg-white text-gray-900 border border-gray-200 font-medium tracking-wide rounded-lg hover:bg-gray-50 transition duration-200 text-center">
+    View Pricing & Process
+  </a>
+</div>
           </div>
           
           {/* Personal Bio Card (Trust Anchor) */}
