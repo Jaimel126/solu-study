@@ -1,8 +1,10 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // <-- Added this line for navigation
 
 export default function Register() {
+  const router = useRouter(); // <-- Initialized the router helper here
   const [formData, setFormData] = useState({ name: '', email: '', password: '', whatsapp: '' });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [loading, setLoading] = useState(false);
@@ -25,8 +27,15 @@ export default function Register() {
         throw new Error(data.error || "Something went wrong.");
       }
 
-      setStatus({ type: 'success', message: 'Account created successfully! You can now track your application.' });
+      // 1. Show the success message beautifully on the screen
+      setStatus({ type: 'success', message: 'Account created successfully! Redirecting you to login...' });
       setFormData({ name: '', email: '', password: '', whatsapp: '' });
+
+      // 2. Wait 2 seconds so they can see the message, then auto-slide them to the login page
+      setTimeout(() => {
+        router.push('/login');
+      }, 2000);
+
     } catch (err) {
       setStatus({ type: 'error', message: err.message });
     } finally {
