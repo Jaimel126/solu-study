@@ -1,8 +1,10 @@
 "use client";
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Login() {
+  const router = useRouter();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [loading, setLoading] = useState(false);
@@ -22,15 +24,16 @@ export default function Login() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Authentication failed.");
+        throw new Error(data.error || "Invalid email or password.");
       }
 
-      setStatus({ type: 'success', message: `Welcome back, ${data.user.name}! Redirecting to dashboard...` });
+      setStatus({ type: 'success', message: 'Login successful! Loading dashboard...' });
       
-      // Temporary storage simulation so the application remembers who is logged in
-      localStorage.setItem("solu_user", JSON.stringify(data.user));
-      
-      // Soon we will redirect them to their actual app dashboard file here!
+      // Save user session data if needed, then redirect
+      setTimeout(() => {
+        router.push('/dashboard'); 
+      }, 1000);
+
     } catch (err) {
       setStatus({ type: 'error', message: err.message });
     } finally {
@@ -42,11 +45,8 @@ export default function Login() {
     <div className="min-h-screen bg-[#FAF9F6] flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans">
       <div className="sm:mx-auto w-full max-w-md">
         <h2 className="text-center text-3xl font-bold tracking-tight text-gray-950">
-          Sign In to Solu Study
+          Sign In to Your Account
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
-          Track your China university scholarship application progress.
-        </p>
       </div>
 
       <div className="mt-8 sm:mx-auto w-full max-w-md">
@@ -87,14 +87,14 @@ export default function Login() {
                 disabled={loading}
                 className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gray-950 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition duration-150 disabled:bg-gray-400"
               >
-                {loading ? 'Verifying...' : 'Sign In'}
+                {loading ? 'Signing in...' : 'Sign In'}
               </button>
             </div>
           </form>
-
+          
           <div className="mt-6 text-center text-sm text-gray-600">
-            Don't have an account yet?{' '}
-            <Link href="/register" className="font-medium text-amber-700 hover:text-amber-600 transition">
+            Don't have an account?{' '}
+            <Link href="/register" className="font-medium text-amber-600 hover:text-amber-500">
               Create one here
             </Link>
           </div>
