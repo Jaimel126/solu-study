@@ -29,7 +29,7 @@ export default function Login() {
 
       setStatus({ type: 'success', message: 'Login successful! Loading dashboard...' });
       
-      // Save user session data if needed, then redirect
+      // Auto-redirect to the dashboard after 1 second
       setTimeout(() => {
         router.push('/dashboard'); 
       }, 1000);
